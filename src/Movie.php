@@ -48,9 +48,17 @@ class Movie
      */
     protected $actors;
 
+    /**
+     * @var MovieRating[]
+     *
+     * @OGM\Relationship(relationshipEntity="MovieRating", type="RATED", direction="INCOMING", collection=true, mappedBy="movie")
+     */
+    protected $ratings;
+
     public function __construct()
     {
         $this->actors = new Collection();
+        $this->ratings = new Collection();
     }
 
     /**
@@ -115,5 +123,13 @@ class Movie
     public function getActors()
     {
         return $this->actors;
+    }
+
+    /**
+     * @return MovieRating[]|Collection
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
     }
 }
